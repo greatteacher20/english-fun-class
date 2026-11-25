@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Dedy Hendry, S.Pd.">
+<title>My Body | English Fun Class</title>
+<style>
+:root{
+  --navy:#143d73;--blue:#2f80ed;--sky:#eaf6ff;--yellow:#ffd85a;--green:#69c66b;
+  --orange:#ff9f43;--ink:#203047;--muted:#68778b;--line:#dbe8f4;
+  --shadow:0 14px 34px rgba(20,61,115,.12)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f2fff7,#fff);color:var(--ink)}
+button,a,input{font-family:inherit}
+.topbar{width:min(1180px,calc(100% - 28px));margin:14px auto 0;padding:12px 16px;background:rgba(255,255,255,.95);
+border:1px solid var(--line);border-radius:20px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+position:sticky;top:8px;z-index:40;box-shadow:var(--shadow);backdrop-filter:blur(10px)}
+.brand{display:flex;align-items:center;gap:10px}.brand-mark{width:44px;height:44px;border-radius:14px;background:var(--navy);
+color:#fff;display:grid;place-items:center;font-weight:900}.brand h1{margin:0;font-size:18px;color:var(--navy)}
+.brand p{margin:2px 0 0;font-size:12px;color:var(--muted)}.top-actions{display:flex;gap:8px;flex-wrap:wrap}
+.top-actions button,.back-btn{border:0;border-radius:12px;padding:10px 13px;font-weight:800;cursor:pointer;text-decoration:none}
+.back-btn{background:#edf4fb;color:var(--navy)}.teacher-btn{background:var(--navy);color:#fff}.present-btn{background:var(--yellow);color:var(--navy)}
+.hero{width:min(1180px,calc(100% - 28px));margin:20px auto 0;padding:38px;border-radius:30px;
+background:linear-gradient(135deg,#143d73,#48a966);color:#fff;box-shadow:var(--shadow)}
+.hero small{font-weight:900;color:var(--yellow);letter-spacing:1.2px}.hero h2{margin:8px 0 10px;font-size:clamp(38px,6vw,68px);line-height:1}
+.hero p{margin:0;max-width:780px;font-size:18px;line-height:1.6;color:rgba(255,255,255,.9)}
+.goal-box{margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.goal{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.23);padding:14px;border-radius:16px;font-weight:700}
+.steps{width:min(980px,calc(100% - 28px));margin:-18px auto 0;padding:13px;background:#fff;border-radius:18px;box-shadow:var(--shadow);
+display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative;z-index:5}
+.step-btn{border:0;border-radius:999px;padding:9px 13px;background:var(--sky);color:var(--navy);font-weight:900;cursor:pointer}.step-btn.active{background:var(--yellow)}
+main{width:min(1180px,calc(100% - 28px));margin:40px auto}.panel{display:none;background:#fff;border:1px solid var(--line);border-radius:26px;padding:28px;box-shadow:var(--shadow)}.panel.active{display:block}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:20px}.section-title h3{margin:0;color:var(--navy);font-size:34px}
+.section-title p{margin:0;color:var(--muted);max-width:580px;line-height:1.5}
+.card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.body-card{padding:18px;border:2px solid #dcefe2;border-radius:20px;background:#fbfffc;text-align:center}
+.body-card .emoji{font-size:54px}.body-card h4{margin:8px 0 2px;color:var(--navy);font-size:24px}.body-card .meaning{color:#2f7a42;font-weight:800}
+.audio-btn{margin-top:12px;border:0;border-radius:12px;padding:9px 11px;background:var(--blue);color:#fff;font-weight:800;cursor:pointer;width:100%}
+.primary,.secondary{border:0;border-radius:14px;padding:12px 16px;font-weight:900;cursor:pointer}.primary{background:var(--navy);color:#fff}.secondary{background:var(--yellow);color:var(--navy)}
+.action-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}.stage{max-width:860px;margin:auto;text-align:center;padding:18px}
+.big-emoji{font-size:90px}.big-prompt{font-size:clamp(30px,5vw,50px);font-weight:900;color:var(--navy);margin:12px 0}.subprompt{font-size:18px;color:var(--muted);line-height:1.5}
+.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px}.choice{border:3px solid #dbe8f4;background:#fff;border-radius:18px;padding:16px;font-size:19px;font-weight:800;cursor:pointer;color:var(--navy)}
+.choice.correct{background:#e8f8e9;border-color:var(--green)}.choice.wrong{background:#fff0f0;border-color:#ef6a6a}.feedback{min-height:32px;margin-top:14px;font-weight:900;color:var(--navy)}
+.teacher-says-box{max-width:760px;margin:0 auto;padding:28px;border:3px dashed #a9d8b8;border-radius:24px;background:#f7fff9}.command{font-size:clamp(34px,5vw,56px);font-weight:900;color:var(--navy);margin:16px 0}
+.rule{display:inline-block;padding:8px 12px;border-radius:999px;background:#e9f8ee;color:#327346;font-weight:900;margin-bottom:8px}
+.monster-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.monster{padding:18px;border:2px solid #dbe8f4;border-radius:20px;background:#fbfdff;cursor:pointer}.monster .face{font-size:70px}.monster b{display:block;color:var(--navy);margin-top:8px}
+.draw-box{margin-top:22px;padding:22px;border:2px solid #dbe8f4;border-radius:22px;background:#fbfdff}.draw-box h4{margin:0 0 12px;color:var(--navy);font-size:24px}
+.word-bank{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0}.word{padding:8px 11px;border-radius:999px;background:#edf7ef;color:#2f7140;font-weight:900}
+.quiz-card{padding:18px;border:2px solid #dbe8f4;border-radius:18px;background:#fbfdff;margin:12px 0}.quiz-card h4{margin:0 0 10px;color:var(--navy);font-size:20px}
+.quiz-option{display:block;width:100%;text-align:left;margin:8px 0;border:2px solid #d7e4f1;border-radius:12px;background:#fff;padding:11px;cursor:pointer;font-size:16px}
+.quiz-option.correct{background:#e8f8e9;border-color:var(--green)}.quiz-option.wrong{background:#fff0f0;border-color:#ef6a6a}
+.progress{height:16px;background:#e7eef6;border-radius:999px;overflow:hidden;margin-bottom:18px}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--green),#32b483);transition:.3s}
+.score{display:none;padding:16px;border-radius:18px;background:#fff6cc;border:2px solid #f0cb55;text-align:center;font-size:24px;font-weight:900;color:var(--navy);margin-top:16px}
+.reflect-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.reflect-item{padding:15px;border:3px solid #dbe8f4;border-radius:18px;background:#fff;cursor:pointer;font-weight:800;text-align:left}
+.reflect-item.done{background:#e9f9ea;border-color:var(--green)}.reflect-item.practice{background:#fff6df;border-color:var(--orange)}
+.teacher-modal{position:fixed;inset:0;background:rgba(8,37,72,.76);z-index:60;display:grid;place-items:center;padding:18px}.teacher-modal[hidden]{display:none}
+.teacher-card{width:min(820px,100%);background:#fff;border-radius:26px;padding:26px;position:relative;box-shadow:var(--shadow)}.teacher-card h3{color:var(--navy);font-size:30px;margin:0 0 12px}
+.teacher-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.teacher-box{padding:15px;background:#f1fbf4;border-radius:16px}.teacher-box h4{margin:0 0 8px;color:var(--navy)}
+.teacher-box p,.teacher-box li{color:var(--muted);line-height:1.5}.close{position:absolute;right:16px;top:10px;border:0;background:transparent;font-size:32px;color:var(--navy);cursor:pointer}
+footer{width:min(1180px,calc(100% - 28px));margin:36px auto 20px;padding:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--muted);font-size:12px}
+body.presentation .brand p,body.presentation footer{display:none}body.presentation .topbar{position:static}
+@media(max-width:900px){.card-grid{grid-template-columns:repeat(2,1fr)}.monster-grid{grid-template-columns:repeat(2,1fr)}.goal-box{grid-template-columns:1fr}.teacher-grid{grid-template-columns:1fr}}
+@media(max-width:620px){.topbar{position:static;align-items:flex-start}.brand p{display:none}.hero{padding:28px 20px}.card-grid,.monster-grid,.choice-grid,.reflect-grid{grid-template-columns:1fr}.section-title{align-items:start;flex-direction:column}.panel{padding:20px}}
+</style>
+<link rel="stylesheet" href="../course.css">
+<link rel="stylesheet" href="../stage8.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">EF</div>
+    <div><h1>English Fun Class</h1><p>Grade 3 • My Body</p></div>
+  </div>
+  <div class="top-actions">
+    <a class="back-btn" href="../index.html">← Home</a>
+    <button class="teacher-btn" id="teacherBtn">Teacher Info</button>
+    <button class="present-btn" id="presentBtn">Present Mode</button>
+  </div>
+</header>
+
+<section class="hero">
+  <small>TOPIC 04</small>
+  <h2>My Body</h2>
+  <p>Learn body parts, listen to instructions, move, speak, and play.</p>
+  <div class="goal-box">
+    <div class="goal">✓ I can name 7 body parts.</div>
+    <div class="goal">✓ I can follow simple instructions.</div>
+    <div class="goal">✓ I can say simple body sentences.</div>
+  </div>
+</section>
+
+<nav class="steps">
+  <button class="step-btn active" data-target="learn">1. Learn</button>
+  <button class="step-btn" data-target="listen">2. Listen</button>
+  <button class="step-btn" data-target="speak">3. Speak</button>
+  <button class="step-btn" data-target="play">4. Play</button>
+  <button class="step-btn" data-target="check">5. Check</button>
+  <button class="step-btn" data-target="reflect">6. Reflect</button>
+</nav>
+
+<main>
+<section id="learn" class="panel active">
+  <div class="section-title">
+    <div><h3>Learn the Body Parts</h3></div>
+    <p>Click Listen, repeat the word, then point to the body part.</p>
+  </div>
+  <div class="card-grid">
+    <div class="body-card"><div class="emoji">🙂</div><h4>Head</h4><div class="meaning">Kepala</div><button class="audio-btn" onclick="speak('Head')">🔊 Listen</button></div>
+    <div class="body-card"><div class="emoji">👀</div><h4>Eyes</h4><div class="meaning">Mata</div><button class="audio-btn" onclick="speak('Eyes')">🔊 Listen</button></div>
+    <div class="body-card"><div class="emoji">👂</div><h4>Ears</h4><div class="meaning">Telinga</div><button class="audio-btn" onclick="speak('Ears')">🔊 Listen</button></div>
+    <div class="body-card"><div class="emoji">👃</div><h4>Nose</h4><div class="meaning">Hidung</div><button class="audio-btn" onclick="speak('Nose')">🔊 Listen</button></div>
+    <div class="body-card"><div class="emoji">👄</div><h4>Mouth</h4><div class="meaning">Mulut</div><button class="audio-btn" onclick="speak('Mouth')">🔊 Listen</button></div>
+    <div class="body-card"><div class="emoji">🙌</div><h4>Hands</h4><div class="meaning">Tangan</div><button class="audio-btn" onclick="speak('Hands')">🔊 Listen</button></div>
+    <div class="body-card"><div class="emoji">🦵</div><h4>Legs</h4><div class="meaning">Kaki</div><button class="audio-btn" onclick="speak('Legs')">🔊 Listen</button></div>
+  </div>
+
+  <div class="draw-box">
+    <h4>Simple Sentences</h4>
+    <div class="action-row">
+      <button class="secondary" onclick="speak('What is this?')">🔊 What is this?</button>
+      <button class="secondary" onclick="speak('This is my eye.')">🔊 This is my eye.</button>
+      <button class="secondary" onclick="speak('These are my ears.')">🔊 These are my ears.</button>
+      <button class="secondary" onclick="speak('I have two ears.')">🔊 I have two ears.</button>
+    </div>
+  </div>
+</section>
+
+<section id="listen" class="panel">
+  <div class="section-title">
+    <div><h3>Listen and Move</h3></div>
+    <p>Listen to the instruction, do the movement, then choose the correct body part.</p>
+  </div>
+  <div class="stage">
+    <div id="listenEmoji" class="big-emoji">🙂</div>
+    <div id="listenPrompt" class="big-prompt">Ready?</div>
+    <button class="secondary" onclick="playListen()">🔊 Listen</button>
+    <div id="listenChoices" class="choice-grid"></div>
+    <div id="listenFeedback" class="feedback"></div>
+    <div class="action-row"><button class="primary" onclick="nextListen()">Next →</button></div>
+  </div>
+</section>
+
+<section id="speak" class="panel">
+  <div class="section-title">
+    <div><h3>Look and Say</h3></div>
+    <p>Look at the body part and say the sentence aloud.</p>
+  </div>
+  <div class="stage">
+    <div id="speakEmoji" class="big-emoji">👃</div>
+    <div id="speakQuestion" class="big-prompt" style="font-size:34px">What is this?</div>
+    <div id="speakAnswer" class="command">It is my nose.</div>
+    <div class="action-row">
+      <button class="secondary" onclick="speak(document.getElementById('speakQuestion').textContent)">🔊 Hear Question</button>
+      <button class="primary" onclick="speak(document.getElementById('speakAnswer').textContent)">🔊 Hear Answer</button>
+      <button class="primary" onclick="nextSpeak()">Next →</button>
+    </div>
+
+    <div class="draw-box">
+      <h4>Draw and Describe</h4>
+      <p class="subprompt">Draw a funny monster on paper, then describe it using these words.</p>
+      <div class="word-bank">
+        <span class="word">one eye</span><span class="word">two eyes</span><span class="word">two ears</span>
+        <span class="word">big nose</span><span class="word">two hands</span><span class="word">two legs</span>
+      </div>
+      <p class="command" style="font-size:28px">“My monster has two eyes and two legs.”</p>
+    </div>
+  </div>
+</section>
+
+<section id="play" class="panel">
+  <div class="section-title">
+    <div><h3>Teacher Says</h3></div>
+    <p>Move only when the command starts with “Teacher says...”.</p>
+  </div>
+  <div class="stage">
+    <div class="teacher-says-box">
+      <div class="rule">MOVE ONLY IF YOU HEAR “TEACHER SAYS”</div>
+      <div id="teacherCommand" class="command">Teacher says, touch your head!</div>
+      <div class="big-emoji" id="teacherEmoji">🙂</div>
+      <div class="action-row">
+        <button class="secondary" onclick="hearTeacherCommand()">🔊 Hear Command</button>
+        <button class="primary" onclick="nextTeacherCommand()">New Command →</button>
+      </div>
+    </div>
+
+    <div class="draw-box">
+      <h4>Monster Match</h4>
+      <p class="subprompt">Read the sentence and choose the correct monster.</p>
+      <div id="monsterSentence" class="command" style="font-size:28px">I have one big eye.</div>
+      <div class="monster-grid" id="monsterGrid"></div>
+      <div id="monsterFeedback" class="feedback"></div>
+      <div class="action-row"><button class="primary" onclick="nextMonster()">Next Monster →</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="check" class="panel">
+  <div class="section-title">
+    <div><h3>Mini Quiz</h3></div>
+    <p>Complete five questions. Your score appears automatically.</p>
+  </div>
+  <div class="progress"><div id="quizBar" class="bar"></div></div>
+  <div id="quizArea"></div>
+  <div id="scoreBox" class="score"></div>
+  <div class="action-row"><button class="primary" onclick="renderQuiz()">Try Again</button></div>
+</section>
+
+<section id="reflect" class="panel">
+  <div class="section-title">
+    <div><h3>I Can Check My Learning</h3></div>
+    <p>Click once for “I can do it”. Click again for “I need more practice”.</p>
+  </div>
+  <div class="stage">
+    <div class="reflect-grid">
+      <button class="reflect-item" onclick="toggleReflect(this)">I can name 7 body parts.</button>
+      <button class="reflect-item" onclick="toggleReflect(this)">I can follow “Touch your...” instructions.</button>
+      <button class="reflect-item" onclick="toggleReflect(this)">I can play Teacher Says.</button>
+      <button class="reflect-item" onclick="toggleReflect(this)">I can say a simple body sentence.</button>
+    </div>
+    <div class="big-prompt" style="font-size:32px;margin-top:24px">Great job! ⭐</div>
+  </div>
+</section>
+</main>
+
+<section id="teacherModal" class="teacher-modal" hidden>
+  <div class="teacher-card">
+    <button class="close" id="closeTeacher">×</button>
+    <h3>Teacher Guide</h3>
+    <div class="teacher-grid">
+      <div class="teacher-box">
+        <h4>Target Vocabulary</h4>
+        <ul><li>head</li><li>eyes</li><li>ears</li><li>nose</li><li>mouth</li><li>hands</li><li>legs</li></ul>
+      </div>
+      <div class="teacher-box">
+        <h4>Target Expressions</h4>
+        <ul><li>What is this?</li><li>This is my eye.</li><li>These are my ears.</li><li>I have two ears.</li></ul>
+      </div>
+      <div class="teacher-box">
+        <h4>Classroom English</h4>
+        <ul><li>Look.</li><li>Listen.</li><li>Repeat after me.</li><li>Point to...</li><li>Show me...</li><li>Touch your...</li><li>Raise your hands.</li></ul>
+      </div>
+      <div class="teacher-box">
+        <h4>Teaching Strategy</h4>
+        <p>Model vocabulary, use TPR, play Teacher Says, move to Look and Say, then Draw and Describe, formative check, and reflection.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><span>English Fun Class • Grade 3</span><span>© Dedy Hendry, S.Pd. • 2026</span></footer>
+
+<script>
+const panels=document.querySelectorAll('.panel');
+const stepBtns=document.querySelectorAll('.step-btn');
+stepBtns.forEach(btn=>btn.addEventListener('click',()=>{
+  stepBtns.forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  panels.forEach(p=>p.classList.remove('active'));document.getElementById(btn.dataset.target).classList.add('active');
+  window.scrollTo({top:300,behavior:'smooth'});
+  if(btn.dataset.target==='check')renderQuiz();
+}));
+
+function speak(text,rate=.82){
+  if('speechSynthesis'in window){
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=rate;speechSynthesis.speak(u);
+  }
+}
+
+const listenItems=[
+  {emoji:'🙂',prompt:'Touch your head.',answer:'Head',choices:['Head','Nose','Hands','Legs']},
+  {emoji:'👃',prompt:'Touch your nose.',answer:'Nose',choices:['Ears','Nose','Mouth','Eyes']},
+  {emoji:'👀',prompt:'Point to your eyes.',answer:'Eyes',choices:['Eyes','Hands','Head','Legs']},
+  {emoji:'🙌',prompt:'Show me your hands.',answer:'Hands',choices:['Mouth','Hands','Ears','Head']},
+  {emoji:'🦵',prompt:'Move your legs.',answer:'Legs',choices:['Legs','Hands','Eyes','Nose']}
+];
+let listenIndex=0;
+function renderListen(){
+  const item=listenItems[listenIndex];
+  document.getElementById('listenEmoji').textContent=item.emoji;
+  document.getElementById('listenPrompt').textContent=item.prompt;
+  document.getElementById('listenFeedback').textContent='';
+  const box=document.getElementById('listenChoices');box.innerHTML='';
+  item.choices.forEach(c=>{
+    const b=document.createElement('button');b.className='choice';b.textContent=c;
+    b.onclick=()=>{
+      [...box.children].forEach(x=>x.disabled=true);
+      if(c===item.answer){b.classList.add('correct');document.getElementById('listenFeedback').textContent='✓ Great job!'}
+      else{b.classList.add('wrong');document.getElementById('listenFeedback').textContent='Listen and move again.';[...box.children].find(x=>x.textContent===item.answer)?.classList.add('correct')}
+    };box.appendChild(b);
+  });
+}
+function playListen(){speak(listenItems[listenIndex].prompt)}
+function nextListen(){listenIndex=(listenIndex+1)%listenItems.length;renderListen()}
+renderListen();
+
+const speakItems=[
+  {emoji:'👃',q:'What is this?',a:'It is my nose.'},
+  {emoji:'👀',q:'What are these?',a:'These are my eyes.'},
+  {emoji:'👂',q:'What are these?',a:'These are my ears.'},
+  {emoji:'🙌',q:'What are these?',a:'These are my hands.'},
+  {emoji:'🦵',q:'What are these?',a:'These are my legs.'}
+];
+let speakIndex=0;
+function renderSpeak(){
+  const item=speakItems[speakIndex];
+  document.getElementById('speakEmoji').textContent=item.emoji;
+  document.getElementById('speakQuestion').textContent=item.q;
+  document.getElementById('speakAnswer').textContent=item.a;
+}
+function nextSpeak(){speakIndex=(speakIndex+1)%speakItems.length;renderSpeak()}
+renderSpeak();
+
+const teacherCommands=[
+  {text:'Teacher says, touch your head!',emoji:'🙂'},
+  {text:'Teacher says, touch your nose!',emoji:'👃'},
+  {text:'Raise your hands!',emoji:'🙌'},
+  {text:'Teacher says, point to your eyes!',emoji:'👀'},
+  {text:'Move your legs!',emoji:'🦵'},
+  {text:'Teacher says, show me your hands!',emoji:'🙌'},
+  {text:'Touch your ears!',emoji:'👂'}
+];
+let cmdIndex=0;
+function renderTeacherCommand(){
+  document.getElementById('teacherCommand').textContent=teacherCommands[cmdIndex].text;
+  document.getElementById('teacherEmoji').textContent=teacherCommands[cmdIndex].emoji;
+}
+function hearTeacherCommand(){speak(teacherCommands[cmdIndex].text)}
+function nextTeacherCommand(){cmdIndex=(cmdIndex+1)%teacherCommands.length;renderTeacherCommand()}
+renderTeacherCommand();
+
+const monsters=[
+  {name:'Monster A',emoji:'🟢👁️',desc:'I have one big eye.'},
+  {name:'Monster B',emoji:'🔴👂👂',desc:'I have two round ears and two hands.'},
+  {name:'Monster C',emoji:'🟣👀',desc:'I have two eyes on top of my head.'},
+  {name:'Monster D',emoji:'🟡👀🦵🦵',desc:'I have two eyes and two legs.'},
+  {name:'Monster E',emoji:'🔵👃',desc:'I have a big orange nose.'},
+  {name:'Monster F',emoji:'🟢👂👂👀',desc:'I have two big ears and two eyes.'}
+];
+let monsterIndex=0;
+function renderMonster(){
+  const target=monsters[monsterIndex];
+  document.getElementById('monsterSentence').textContent=target.desc;
+  document.getElementById('monsterFeedback').textContent='';
+  const grid=document.getElementById('monsterGrid');grid.innerHTML='';
+  monsters.slice(0,3).forEach((m,idx)=>{
+    const actual=monsters[(monsterIndex+idx)%monsters.length];
+    const d=document.createElement('button');d.className='monster';
+    d.innerHTML=`<div class="face">${actual.emoji}</div><b>${actual.name}</b>`;
+    d.onclick=()=>{
+      [...grid.children].forEach(x=>x.disabled=true);
+      if(actual.desc===target.desc){d.style.borderColor='#69c66b';d.style.background='#e8f8e9';document.getElementById('monsterFeedback').textContent='✓ Correct!'}
+      else{d.style.borderColor='#ef6a6a';d.style.background='#fff0f0';document.getElementById('monsterFeedback').textContent='Try another monster next time.'}
+    };
+    grid.appendChild(d);
+  });
+}
+function nextMonster(){monsterIndex=(monsterIndex+1)%monsters.length;renderMonster()}
+renderMonster();
+
+const quizData=[
+  {q:'“Hidung” in English is ...',a:'Nose',o:['Nose','Mouth','Head']},
+  {q:'Choose the correct instruction for 👀',a:'Point to your eyes.',o:['Point to your eyes.','Touch your nose.','Raise your hands.']},
+  {q:'Which sentence is correct?',a:'These are my ears.',o:['This are my ears.','These are my ears.','These is my ears.']},
+  {q:'What should you do when you hear “Teacher says, touch your head”?',a:'Touch your head.',o:['Touch your head.','Raise your hands.','Move your legs.']},
+  {q:'Which word means “tangan”?',a:'Hands',o:['Legs','Hands','Eyes']}
+];
+let answered=0,score=0;
+function renderQuiz(){
+  answered=0;score=0;document.getElementById('quizBar').style.width='0%';
+  const area=document.getElementById('quizArea');area.innerHTML='';
+  const scoreBox=document.getElementById('scoreBox');scoreBox.style.display='none';scoreBox.textContent='';
+  quizData.forEach((item,i)=>{
+    const card=document.createElement('div');card.className='quiz-card';
+    const h=document.createElement('h4');h.textContent=(i+1)+'. '+item.q;card.appendChild(h);
+    item.o.forEach(opt=>{
+      const b=document.createElement('button');b.className='quiz-option';b.textContent=opt;
+      b.onclick=()=>{
+        if(card.dataset.done)return;card.dataset.done='1';answered++;
+        if(opt===item.a){b.classList.add('correct');score++}
+        else{b.classList.add('wrong');[...card.querySelectorAll('.quiz-option')].find(x=>x.textContent===item.a)?.classList.add('correct')}
+        document.getElementById('quizBar').style.width=(answered/quizData.length*100)+'%';
+        if(answered===quizData.length){
+          scoreBox.style.display='block';
+          scoreBox.textContent=`Your score: ${score}/${quizData.length} • ${score>=4?'Excellent!':'Keep practicing!'}`
+        }
+      };card.appendChild(b);
+    });area.appendChild(card);
+  });
+}
+renderQuiz();
+
+function toggleReflect(el){
+  if(!el.classList.contains('done')&&!el.classList.contains('practice')){el.classList.add('done');el.textContent='✓ '+el.textContent}
+  else if(el.classList.contains('done')){el.classList.remove('done');el.classList.add('practice');el.textContent=el.textContent.replace('✓ ','↻ ')}
+  else{el.classList.remove('practice');el.textContent=el.textContent.replace('↻ ','')}
+}
+
+const modal=document.getElementById('teacherModal');
+document.getElementById('teacherBtn').onclick=()=>modal.hidden=false;
+document.getElementById('closeTeacher').onclick=()=>modal.hidden=true;
+modal.onclick=e=>{if(e.target===modal)modal.hidden=true};
+
+document.getElementById('presentBtn').addEventListener('click',async()=>{
+  document.body.classList.toggle('presentation');
+  const btn=document.getElementById('presentBtn');
+  if(document.body.classList.contains('presentation')){
+    btn.textContent='Exit Present Mode';
+    try{await document.documentElement.requestFullscreen?.()}catch(e){}
+  }else{
+    btn.textContent='Present Mode';
+    if(document.fullscreenElement)await document.exitFullscreen?.();
+  }
+});
+document.addEventListener('fullscreenchange',()=>{
+  if(!document.fullscreenElement&&document.body.classList.contains('presentation')){
+    document.body.classList.remove('presentation');document.getElementById('presentBtn').textContent='Present Mode';
+  }
+});
+</script>
+<script src="../course.js"></script>
+<script src="../stage8.js"></script>
+</body>
+</html>

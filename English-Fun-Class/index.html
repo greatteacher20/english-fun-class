@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Dedy Hendry, S.Pd." />
+  <title>English Fun Class | Grade 3</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="course.css" />
+  <link rel="stylesheet" href="stage8.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">EF</div>
+      <div>
+        <h1>English Fun Class </h1>
+        <p>Interactive English Learning for Grade 3</p>
+        <p class="teacher-name">Created Dedy Hendry, S.Pd.</p>
+      </div>
+    </div>
+    <button class="present-btn" id="presentBtn" type="button">Present Mode</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">WELCOME, STUDENTS!</span>
+        <h2>Learn English with fun activities.</h2>
+        <p>Listen, speak, play, and check your learning through six interactive topics.</p>
+        <div class="hero-actions">
+          <a href="#topics" class="primary-btn">Start Learning</a>
+          <button class="secondary-btn" id="teacherInfoBtn" type="button">Teacher Info</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+  <div class="learning-card">
+
+    <div class="abc-icon">
+      <span>📚</span>
+      <strong>ABC</strong>
+    </div>
+
+    <div class="mini-activities">
+      <div class="mini-item">
+        <span>👋</span>
+        <p>Hello!</p>
+      </div>
+
+      <div class="mini-item">
+        <span>🎧</span>
+        <p>Listen</p>
+      </div>
+
+      <div class="mini-item">
+        <span>💬</span>
+        <p>Speak</p>
+      </div>
+
+      <div class="mini-item">
+        <span>🎮</span>
+        <p>Play</p>
+      </div>
+    </div>
+
+    <div class="lets-learn">
+      Let's Learn!
+    </div>
+
+  </div>
+</div>
+      </div>
+    </section>
+
+    <section class="learning-path">
+      <span>LEARN</span><span>LISTEN</span><span>SPEAK</span>
+      <span>PLAY</span><span>CHECK</span><span>REFLECT</span>
+    </section>
+
+    <section class="topics-section" id="topics">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">CHOOSE A TOPIC</span>
+          <h2>What do you want to learn today?</h2>
+        </div>
+        <p>Click a topic card to start learning.</p>
+      </div>
+
+      <div class="topic-grid">
+        <a class="topic-card topic-greetings" data-module="greetings" href="modules/greetings.html">
+          <div class="topic-icon">👋</div><div class="topic-number">01</div>
+          <h3>Greetings & Partings</h3>
+          <p>Say hello, ask how someone feels, and say goodbye.</p>
+          <span class="topic-tags">Greetings • Feelings • Partings</span><span class="start-link">Start →</span>
+        </a>
+
+        <a class="topic-card topic-myself" data-module="myself" href="modules/myself.html">
+          <div class="topic-icon">🙋</div><div class="topic-number">02</div>
+          <h3>My Self</h3>
+          <p>Introduce yourself, spell your name, and tell your age.</p>
+          <span class="topic-tags">Alphabet • Name • Numbers • Age</span><span class="start-link">Start →</span>
+        </a>
+
+        <a class="topic-card topic-family" data-module="myfamily" href="modules/myfamily.html">
+          <div class="topic-icon">👨‍👩‍👧</div><div class="topic-number">03</div>
+          <h3>My Family</h3>
+          <p>Learn family members and simple family sentences.</p>
+          <span class="topic-tags">Family • He / She • Family Tree</span><span class="start-link">Start →</span>
+        </a>
+
+        <a class="topic-card topic-body" data-module="mybody" href="modules/mybody.html">
+          <div class="topic-icon">🧍</div><div class="topic-number">04</div>
+          <h3>My Body</h3>
+          <p>Learn body parts, listen to instructions, and move.</p>
+          <span class="topic-tags">Body Parts • TPR • Teacher Says</span><span class="start-link">Start →</span>
+        </a>
+
+        <a class="topic-card topic-hobby" data-module="myhobby" href="modules/myhobby.html">
+          <div class="topic-icon">⚽</div><div class="topic-number">05</div>
+          <h3>My Hobby</h3>
+          <p>Talk about hobbies, places, likes, and dislikes.</p>
+          <span class="topic-tags">Hobbies • Places • Do you like...?</span><span class="start-link">Start →</span>
+        </a>
+
+        <a class="topic-card topic-animals" data-module="animals-plants" href="modules/animals-plants.html">
+          <div class="topic-icon">🐾🌱</div><div class="topic-number">06</div>
+          <h3>My Animals & Plants</h3>
+          <p>Learn animals, plants, plant parts, and simple facts.</p>
+          <span class="topic-tags">Animals • Plants • Nature</span><span class="start-link">Start →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="teacher-panel" id="teacherPanel" hidden>
+      <div class="teacher-panel-card">
+        <button class="close-btn" id="closeTeacherInfo" type="button">×</button>
+        <span class="eyebrow">TEACHER INFO</span>
+        <h2>Learning Design</h2>
+        <p>Each topic follows: <strong>Learn → Listen → Speak → Play → Check → Reflect.</strong></p>
+        <div class="teacher-grid">
+          <div><h3>For students</h3><p>Large visuals, short instructions, audio, movement, games, and reflection.</p></div>
+          <div><h3>For classroom practice</h3><p>Designed for modelling, guided practice, interaction, formative assessment, and reflection.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Learn • Listen • Speak • Play</p>
+    <p>© Dedy Hendry, S.Pd. • 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="course.js"></script>
+  <script src="stage8.js"></script>
+</body>
+</html>

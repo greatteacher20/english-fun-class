@@ -1,0 +1,313 @@
+
+/* =========================================================
+   ENGLISH FUN CLASS - STAGE 8
+   Classroom-ready visual and teaching mode enhancements
+   ========================================================= */
+
+.classroom-ready{
+  width:min(1180px,calc(100% - 32px));
+  margin:36px auto 0;
+  padding:22px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:18px;
+  align-items:center;
+  border:1px solid #dce8f4;
+  border-radius:24px;
+  background:linear-gradient(135deg,#ffffff,#f4f9ff);
+  box-shadow:0 12px 30px rgba(20,61,115,.08);
+}
+.classroom-ready h3{
+  margin:6px 0 8px;
+  color:#143d73;
+  font-size:28px;
+}
+.classroom-ready p{
+  margin:0;
+  color:#66758a;
+  line-height:1.6;
+}
+.ready-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 11px;
+  border-radius:999px;
+  background:#e8f8e9;
+  color:#2f7140;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.5px;
+}
+.demo-box{
+  padding:18px;
+  border-radius:19px;
+  background:#143d73;
+  color:#fff;
+}
+.demo-box strong{
+  display:block;
+  font-size:19px;
+  margin-bottom:7px;
+}
+.demo-box p{
+  color:rgba(255,255,255,.82);
+  font-size:14px;
+}
+.demo-launch{
+  display:inline-flex;
+  margin-top:13px;
+  padding:11px 15px;
+  border-radius:12px;
+  background:#ffd85a;
+  color:#0d2c55;
+  text-decoration:none;
+  font-weight:900;
+}
+
+/* Floating teaching tools button */
+.class-tools-btn{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:70;
+  border:0;
+  border-radius:999px;
+  padding:12px 16px;
+  background:#143d73;
+  color:#fff;
+  box-shadow:0 10px 30px rgba(13,44,85,.26);
+  font-weight:900;
+  cursor:pointer;
+}
+.class-tools-btn:hover{transform:translateY(-2px)}
+
+/* Teaching tools modal */
+.class-tools-modal{
+  position:fixed;
+  inset:0;
+  z-index:90;
+  display:grid;
+  place-items:center;
+  padding:18px;
+  background:rgba(8,37,72,.74);
+}
+.class-tools-modal[hidden]{display:none}
+.class-tools-card{
+  width:min(820px,100%);
+  max-height:90vh;
+  overflow:auto;
+  padding:25px;
+  border-radius:26px;
+  background:#fff;
+  box-shadow:0 18px 50px rgba(8,37,72,.25);
+  position:relative;
+}
+.class-tools-close{
+  position:absolute;
+  top:11px;
+  right:15px;
+  border:0;
+  background:transparent;
+  font-size:31px;
+  color:#143d73;
+  cursor:pointer;
+}
+.class-tools-card h3{
+  margin:0;
+  color:#143d73;
+  font-size:29px;
+}
+.class-tools-card > p{
+  margin:7px 0 18px;
+  color:#66758a;
+  line-height:1.5;
+}
+.teacher-tools-grid{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:14px;
+}
+.tool-panel{
+  padding:17px;
+  border-radius:18px;
+  background:#f4f9ff;
+  border:1px solid #dce8f4;
+}
+.tool-panel h4{
+  margin:0 0 10px;
+  color:#143d73;
+  font-size:18px;
+}
+.lesson-timer{
+  text-align:center;
+  font-size:52px;
+  font-weight:900;
+  color:#143d73;
+  letter-spacing:2px;
+  margin:8px 0 12px;
+}
+.timer-actions{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.timer-actions button,
+.activity-control{
+  border:0;
+  border-radius:12px;
+  padding:10px 13px;
+  font-weight:900;
+  cursor:pointer;
+}
+.timer-actions button{
+  background:#143d73;
+  color:#fff;
+}
+.timer-actions .timer-reset{
+  background:#ffd85a;
+  color:#143d73;
+}
+.demo-flow{
+  margin:0;
+  padding-left:20px;
+  color:#44556b;
+  line-height:1.65;
+}
+.demo-flow strong{color:#143d73}
+.activity-strip{
+  margin-top:14px;
+  padding:14px;
+  border-radius:15px;
+  background:#fff;
+  border:1px solid #dce8f4;
+}
+.activity-strip small{
+  display:block;
+  color:#66758a;
+  font-weight:800;
+  margin-bottom:4px;
+}
+.activity-strip strong{
+  color:#143d73;
+  font-size:19px;
+}
+.activity-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+.activity-control{
+  background:#edf4fb;
+  color:#143d73;
+}
+.activity-control.next{
+  background:#ffd85a;
+}
+.shortcut-note{
+  margin-top:12px;
+  font-size:12px;
+  color:#66758a;
+  line-height:1.5;
+}
+
+/* Classroom / present mode */
+body.presentation{
+  background:#f8fbff;
+}
+body.presentation .teacher-btn,
+body.presentation .back-btn,
+body.presentation .course-nav-shell,
+body.presentation footer,
+body.presentation .class-tools-btn{
+  display:none !important;
+}
+body.presentation .topbar{
+  width:min(1280px,calc(100% - 20px));
+  margin:8px auto 0;
+  padding:10px 14px;
+  box-shadow:0 8px 24px rgba(20,61,115,.10);
+}
+body.presentation .brand-mark{
+  width:40px;
+  height:40px;
+}
+body.presentation .hero{
+  width:min(1280px,calc(100% - 20px));
+  margin:12px auto 0;
+  min-height:auto;
+  padding:22px 28px;
+  border-radius:22px;
+}
+body.presentation .hero h2{
+  font-size:clamp(38px,5vw,58px);
+  margin-bottom:7px;
+}
+body.presentation .hero p{
+  font-size:17px;
+}
+body.presentation .goal-box{
+  margin-top:14px;
+}
+body.presentation .goal{
+  padding:10px 12px;
+}
+body.presentation .steps{
+  width:min(1100px,calc(100% - 20px));
+  margin:12px auto;
+  position:sticky;
+  top:8px;
+  z-index:65;
+  padding:10px;
+}
+body.presentation .step-btn{
+  min-height:44px;
+  padding:10px 15px;
+  font-size:14px;
+}
+body.presentation main{
+  width:min(1280px,calc(100% - 20px));
+  margin:15px auto;
+}
+body.presentation .panel{
+  min-height:calc(100vh - 205px);
+  padding:30px;
+  border-radius:22px;
+}
+body.presentation .section-title h3{
+  font-size:38px;
+}
+body.presentation .section-title p{
+  font-size:17px;
+}
+body.presentation .audio-btn,
+body.presentation .primary,
+body.presentation .secondary,
+body.presentation .choice,
+body.presentation .quiz-option,
+body.presentation .reflect-item{
+  min-height:52px;
+  font-size:17px;
+}
+body.presentation .big-prompt{
+  font-size:clamp(34px,5vw,58px);
+}
+
+/* Projector safety */
+@media (min-width:1200px){
+  body.presentation .card-grid{
+    gap:18px;
+  }
+}
+@media(max-width:760px){
+  .classroom-ready,
+  .teacher-tools-grid{
+    grid-template-columns:1fr;
+  }
+  .class-tools-btn{
+    right:12px;
+    bottom:12px;
+  }
+}
