@@ -61,9 +61,29 @@ footer{width:min(1180px,calc(100% - 28px));margin:36px auto 20px;padding:18px;bo
 body.presentation .brand p,body.presentation footer{display:none}body.presentation .topbar{position:static}
 @media(max-width:900px){.card-grid,.plant-diagram,.need-grid{grid-template-columns:repeat(2,1fr)}.goal-box{grid-template-columns:1fr}.teacher-grid{grid-template-columns:1fr}}
 @media(max-width:620px){.topbar{position:static;align-items:flex-start}.brand p{display:none}.hero{padding:28px 20px}.card-grid,.plant-diagram,.need-grid,.choice-grid,.sort-grid,.reflect-grid{grid-template-columns:1fr}.section-title{align-items:start;flex-direction:column}.panel{padding:20px}}
+
+.teacher-today{margin-top:16px;display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);font-weight:900}
+.checkin-section{width:min(1180px,calc(100% - 28px));margin:28px auto 0;padding:28px;border-radius:28px;background:linear-gradient(135deg,#fffdf3,#f6fff8);border:1px solid #dbe8f4;box-shadow:var(--shadow)}
+.checkin-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:20px}
+.checkin-head h3{margin:4px 0 0;color:var(--navy);font-size:34px}.checkin-head p{margin:0;max-width:520px;color:var(--muted);line-height:1.55}
+.checkin-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.checkin-card{padding:20px;border-radius:20px;background:#fff;border:2px solid #dbe8f4}
+.checkin-card label{display:block;margin-bottom:7px;color:var(--navy);font-weight:900}
+.checkin-card select,.checkin-card textarea{width:100%;border:2px solid #dbe8f4;border-radius:14px;padding:13px 14px;font-size:16px;color:var(--ink);background:#fff}
+.checkin-card textarea{min-height:110px;resize:vertical}.sentence-help{margin-top:9px;color:var(--muted);font-size:13px;line-height:1.5}
+.sentence-examples{margin-top:10px;display:flex;gap:7px;flex-wrap:wrap}.example-chip{border:0;border-radius:999px;padding:8px 10px;background:#eef7ff;color:var(--navy);font-size:12px;font-weight:800;cursor:pointer}
+.checkin-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.checkin-submit,.checkin-summary-btn{border:0;border-radius:14px;padding:12px 16px;font-weight:900;cursor:pointer}
+.checkin-submit{background:var(--green);color:#123d22}.checkin-summary-btn{background:var(--navy);color:#fff}.checkin-message{margin-top:14px;min-height:30px;font-weight:900;color:var(--navy)}
+.attendance-board{margin-top:22px;padding:20px;border-radius:20px;background:#fff;border:2px solid #dbe8f4}.attendance-board[hidden]{display:none}
+.attendance-board h4{margin:0 0 12px;color:var(--navy);font-size:22px}.attendance-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.attendance-row{padding:12px;border-radius:14px;background:#f7fbff;border:1px solid #dbe8f4}.attendance-row strong{display:block;color:var(--navy)}
+.attendance-row span{display:block;margin-top:4px;color:var(--muted);font-size:13px;line-height:1.45}.attendance-row.present{background:#effaf1;border-color:#bfe6c8}
+.attendance-count{margin-bottom:12px;font-weight:900;color:#2f7140}.reset-attendance{margin-top:14px;border:0;background:transparent;color:#8b3c36;text-decoration:underline;font-weight:800;cursor:pointer}
+.challenge-strip{margin-top:22px;padding:22px;border-radius:22px;border:2px solid #dbe8f4;background:#fbfdff}.challenge-strip h4{margin:0 0 8px;color:var(--navy);font-size:24px}
+.showtell-card{max-width:720px;margin:18px auto 0;padding:22px;border-radius:20px;background:#fff;border:3px dashed #b9d8c1;text-align:center}
+.showtell-card .emoji{font-size:78px}.showtell-card .model{margin:12px 0;color:var(--navy);font-size:26px;font-weight:900;line-height:1.45}
+@media(max-width:800px){.checkin-grid,.attendance-list{grid-template-columns:1fr}.checkin-head{align-items:flex-start;flex-direction:column}}
+
 </style>
-<link rel="stylesheet" href="../course.css">
-<link rel="stylesheet" href="../stage8.css">
 </head>
 <body>
 <header class="topbar">
@@ -82,10 +102,75 @@ body.presentation .brand p,body.presentation footer{display:none}body.presentati
   <small>TOPIC 06</small>
   <h2>My Animals & Plants</h2>
   <p>Learn animals, plants, plant parts, and simple facts through listening, speaking, and games.</p>
+<div class="teacher-today">👨‍🏫 Today’s Teacher: Dedy Hendry, S.Pd.</div>
   <div class="goal-box">
     <div class="goal">✓ I can name animals.</div>
     <div class="goal">✓ I can name plants and plant parts.</div>
     <div class="goal">✓ I can say simple sentences.</div>
+  </div>
+</section>
+
+
+<section class="checkin-section" id="englishCheckin">
+  <div class="checkin-head">
+    <div>
+      <small style="font-weight:900;color:#2f80ed;letter-spacing:1px">WELCOME ACTIVITY</small>
+      <h3>English Check-in</h3>
+    </div>
+    <p>Choose your name and write one English sentence for today. Your attendance is complete after the sentence is submitted.</p>
+  </div>
+
+  <div class="checkin-grid">
+    <div class="checkin-card">
+      <label for="teacherName">Choose your name</label>
+      <select id="teacherName">
+        <option value="">-- Select your name --</option>
+        <option value="Rosidi, S.Pd.I., M.Pd.">Rosidi, S.Pd.I., M.Pd.</option>
+<option value="Ulfa Surya Widiyanti, S.Pd.">Ulfa Surya Widiyanti, S.Pd.</option>
+<option value="Widi Artin, S.Pd.SD.">Widi Artin, S.Pd.SD.</option>
+<option value="Devi Yulianti, S.Pd.">Devi Yulianti, S.Pd.</option>
+<option value="Nuriman, S.Pd.I.">Nuriman, S.Pd.I.</option>
+<option value="Tri Asih, S.Pd.">Tri Asih, S.Pd.</option>
+<option value="Silvia Febri Nurfitri, S.Pd.">Silvia Febri Nurfitri, S.Pd.</option>
+<option value="Muniroh, S.Pd.">Muniroh, S.Pd.</option>
+<option value="Banaji Lukman, S.Pd.">Banaji Lukman, S.Pd.</option>
+<option value="Sopiyatun, S.Pd.SD.">Sopiyatun, S.Pd.SD.</option>
+<option value="Minkhatul Maola, S.Pd.">Minkhatul Maola, S.Pd.</option>
+<option value="Asih Setyawati, S.Pd.SD.">Asih Setyawati, S.Pd.SD.</option>
+<option value="Anggi Tianto, S.Pd.">Anggi Tianto, S.Pd.</option>
+<option value="Nopita Anggrayani, S.Pd.SD.">Nopita Anggrayani, S.Pd.SD.</option>
+<option value="Maesaroh, S.Pd.">Maesaroh, S.Pd.</option>
+<option value="Sri Wulandari, S.Pd.SD.">Sri Wulandari, S.Pd.SD.</option>
+<option value="Hendro Widikdo, A.Ma.Pd.">Hendro Widikdo, A.Ma.Pd.</option>
+<option value="Mala Budiwati, S.Pd.">Mala Budiwati, S.Pd.</option>
+<option value="Iin Susrian, S.Pd.">Iin Susrian, S.Pd.</option>
+      </select>
+      <div class="sentence-help">Attendance rule: write at least one simple English sentence.</div>
+    </div>
+
+    <div class="checkin-card">
+      <label for="todaySentence">Today's English Sentence</label>
+      <textarea id="todaySentence" placeholder="Example: I like rabbits."></textarea>
+      <div class="sentence-examples">
+        <button class="example-chip" type="button" onclick="useSentence('Today I am happy.')">Today I am happy.</button>
+        <button class="example-chip" type="button" onclick="useSentence('I like cats.')">I like cats.</button>
+        <button class="example-chip" type="button" onclick="useSentence('My favorite animal is a rabbit.')">My favorite animal is a rabbit.</button>
+        <button class="example-chip" type="button" onclick="useSentence('Plants need water.')">Plants need water.</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="checkin-actions">
+    <button class="checkin-submit" type="button" onclick="submitCheckin()">✓ Check In</button>
+    <button class="checkin-summary-btn" type="button" onclick="toggleAttendanceBoard()">View Attendance</button>
+  </div>
+  <div id="checkinMessage" class="checkin-message"></div>
+
+  <div id="attendanceBoard" class="attendance-board" hidden>
+    <h4>Today's Attendance</h4>
+    <div id="attendanceCount" class="attendance-count"></div>
+    <div id="attendanceList" class="attendance-list"></div>
+    <button class="reset-attendance" type="button" onclick="resetAttendance()">Reset today's attendance</button>
   </div>
 </section>
 
@@ -235,6 +320,19 @@ body.presentation .brand p,body.presentation footer{display:none}body.presentati
       </div>
       <div id="sortFeedback" class="feedback"></div>
       <div class="action-row"><button class="primary" onclick="nextSort()">Next →</button></div>
+
+    <div class="challenge-strip">
+      <h4>Show and Tell Challenge</h4>
+      <p class="subprompt">Look at the animal. Make a short description and say it aloud.</p>
+      <div class="showtell-card">
+        <div id="showTellEmoji" class="emoji">🐟</div>
+        <div id="showTellModel" class="model">This is my pet. It is a fish. My fish is yellow.</div>
+        <div class="action-row">
+          <button class="secondary" type="button" onclick="speak(document.getElementById('showTellModel').textContent)">🔊 Hear Model</button>
+          <button class="primary" type="button" onclick="nextShowTell()">New Challenge →</button>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -528,8 +626,86 @@ document.addEventListener('fullscreenchange',()=>{
     document.body.classList.remove('presentation');document.getElementById('presentBtn').textContent='Present Mode';
   }
 });
+
+const SENIOR_TEACHERS = [
+  "Rosidi, S.Pd.I., M.Pd.","Ulfa Surya Widiyanti, S.Pd.","Widi Artin, S.Pd.SD.","Devi Yulianti, S.Pd.",
+  "Nuriman, S.Pd.I.","Tri Asih, S.Pd.","Silvia Febri Nurfitri, S.Pd.","Muniroh, S.Pd.",
+  "Banaji Lukman, S.Pd.","Sopiyatun, S.Pd.SD.","Minkhatul Maola, S.Pd.","Asih Setyawati, S.Pd.SD.",
+  "Anggi Tianto, S.Pd.","Nopita Anggrayani, S.Pd.SD.","Maesaroh, S.Pd.","Sri Wulandari, S.Pd.SD.",
+  "Hendro Widikdo, A.Ma.Pd.","Mala Budiwati, S.Pd.","Iin Susrian, S.Pd."
+];
+const ATTENDANCE_KEY = "animalsPlantsSeniorAttendance";
+
+function getAttendance(){
+  try{
+    const data = JSON.parse(localStorage.getItem(ATTENDANCE_KEY) || "{}");
+    return data && typeof data === "object" ? data : {};
+  }catch(e){ return {}; }
+}
+function useSentence(text){ document.getElementById("todaySentence").value = text; }
+function submitCheckin(){
+  const name = document.getElementById("teacherName").value;
+  const sentence = document.getElementById("todaySentence").value.trim();
+  const msg = document.getElementById("checkinMessage");
+  if(!name){ msg.textContent = "Please choose your name first."; return; }
+  const words = sentence.split(/\s+/).filter(Boolean);
+  if(words.length < 3 || !/[A-Za-z]/.test(sentence)){
+    msg.textContent = "Please write one simple English sentence with at least 3 words.";
+    return;
+  }
+  const attendance = getAttendance();
+  attendance[name] = {sentence, time:new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"})};
+  localStorage.setItem(ATTENDANCE_KEY, JSON.stringify(attendance));
+  msg.textContent = `✓ Welcome, ${name}! You are present today. Great sentence!`;
+  document.getElementById("todaySentence").value = "";
+  document.getElementById("teacherName").value = "";
+  renderAttendance();
+}
+function renderAttendance(){
+  const attendance = getAttendance();
+  const list = document.getElementById("attendanceList");
+  if(!list) return;
+  const count = Object.keys(attendance).length;
+  document.getElementById("attendanceCount").textContent = `${count} of ${SENIOR_TEACHERS.length} teachers checked in`;
+  list.innerHTML = "";
+  SENIOR_TEACHERS.forEach(name=>{
+    const row = document.createElement("div");
+    const info = attendance[name];
+    row.className = "attendance-row" + (info ? " present" : "");
+    row.innerHTML = info
+      ? `<strong>✓ ${name}</strong><span>“${info.sentence}” • ${info.time}</span>`
+      : `<strong>${name}</strong><span>Not checked in yet</span>`;
+    list.appendChild(row);
+  });
+}
+function toggleAttendanceBoard(){
+  const board = document.getElementById("attendanceBoard");
+  board.hidden = !board.hidden;
+  if(!board.hidden) renderAttendance();
+}
+function resetAttendance(){
+  if(confirm("Reset all attendance for today?")){
+    localStorage.removeItem(ATTENDANCE_KEY);
+    document.getElementById("checkinMessage").textContent = "Attendance has been reset.";
+    renderAttendance();
+  }
+}
+
+const showTellItems = [
+  {emoji:"🐟", text:"This is my pet. It is a fish. My fish is yellow."},
+  {emoji:"🐰", text:"This is my pet. It is a rabbit. My rabbit is brown."},
+  {emoji:"🐦", text:"This is my pet. It is a bird. My bird is yellow."},
+  {emoji:"🐱", text:"This is my pet. It is a cat. My cat is orange."}
+];
+let showTellIndex = 0;
+function nextShowTell(){
+  showTellIndex = (showTellIndex + 1) % showTellItems.length;
+  const item = showTellItems[showTellIndex];
+  document.getElementById("showTellEmoji").textContent = item.emoji;
+  document.getElementById("showTellModel").textContent = item.text;
+}
+document.addEventListener("DOMContentLoaded", renderAttendance);
+
 </script>
-<script src="../course.js"></script>
-<script src="../stage8.js"></script>
 </body>
 </html>
