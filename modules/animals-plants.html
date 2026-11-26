@@ -766,6 +766,7 @@ const SENIOR_TEACHERS = [
   "Hendro Widikdo, A.Ma.Pd.","Mala Budiwati, S.Pd.","Iin Susrian, S.Pd."
 ];
 const ATTENDANCE_KEY = "animalsPlantsSeniorAttendance";
+const GOOGLE_SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwNCng25rLJKDK4-LIcHP4TGK4Y0QnYE73fdcOiztHLiQib-ojKnWTvNeIxKeKmNJ_Bqg/exec";
 
 function getAttendance(){
   try{
@@ -774,23 +775,63 @@ function getAttendance(){
   }catch(e){ return {}; }
 }
 function useSentence(text){ document.getElementById("todaySentence").value = text; }
-function submitCheckin(){
+async function submitCheckin(){
   const name = document.getElementById("teacherName").value;
   const sentence = document.getElementById("todaySentence").value.trim();
   const msg = document.getElementById("checkinMessage");
-  if(!name){ msg.textContent = "Please choose your name first."; return; }
+
+  if(!name){
+    msg.textContent = "Please choose your name first.";
+    return;
+  }
+
   const words = sentence.split(/\s+/).filter(Boolean);
   if(words.length < 3 || !/[A-Za-z]/.test(sentence)){
     msg.textContent = "Please write one simple English sentence with at least 3 words.";
     return;
   }
-  const attendance = getAttendance();
-  attendance[name] = {sentence, time:new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"})};
-  localStorage.setItem(ATTENDANCE_KEY, JSON.stringify(attendance));
-  msg.textContent = `✓ Welcome, ${name}! You are present today. Great sentence!`;
-  document.getElementById("todaySentence").value = "";
-  document.getElementById("teacherName").value = "";
-  renderAttendance();
+
+  if(!GOOGLE_SHEET_WEB_APP_URL || GOOGLE_SHEET_WEB_APP_URL === "PASTE_YOUR_WEB_APP_URL_HERE"){
+    msg.textContent = "Google Sheets connection is not configured yet.";
+    return;
+  }
+
+  msg.textContent = "Saving attendance...";
+
+  try{
+    const response = await fetch(GOOGLE_SHEET_WEB_APP_URL, {
+      method: "POST",
+      headers: {"Content-Type": "text/plain;charset=utf-8"},
+      body: JSON.stringify({
+        name: name,
+        sentence: sentence,
+        topic: "Animals & Plants"
+      })
+    });
+
+    const result = await response.json();
+
+    if(!result.success){
+      msg.textContent = result.message || "Attendance could not be recorded.";
+      return;
+    }
+
+    const attendance = getAttendance();
+    attendance[name] = {
+      sentence: sentence,
+      time: new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"})
+    };
+    localStorage.setItem(ATTENDANCE_KEY, JSON.stringify(attendance));
+
+    msg.textContent = `✓ Welcome, ${name}! Your attendance has been recorded.`;
+    document.getElementById("todaySentence").value = "";
+    document.getElementById("teacherName").value = "";
+    renderAttendance();
+
+  }catch(error){
+    console.error(error);
+    msg.textContent = "Connection failed. Please check the internet or Web App URL.";
+  }
 }
 function renderAttendance(){
   const attendance = getAttendance();
