@@ -83,6 +83,109 @@ body.presentation .brand p,body.presentation footer{display:none}body.presentati
 .showtell-card .emoji{font-size:78px}.showtell-card .model{margin:12px 0;color:var(--navy);font-size:26px;font-weight:900;line-height:1.45}
 @media(max-width:800px){.checkin-grid,.attendance-list{grid-template-columns:1fr}.checkin-head{align-items:flex-start;flex-direction:column}}
 
+
+/* ===== Explore Indonesia Vocabulary ===== */
+.explore-vocab{
+  margin-top:32px;
+  padding:24px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#f7fbff,#f7fff8);
+  border:2px solid #dbe8f4;
+}
+.explore-vocab h4{
+  margin:0 0 8px;
+  color:var(--navy);
+  font-size:28px;
+}
+.explore-vocab .intro{
+  color:var(--muted);
+  line-height:1.6;
+  margin-bottom:16px;
+}
+.vocab-tools{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-bottom:18px;
+}
+.vocab-search{
+  flex:1 1 260px;
+  border:2px solid #dbe8f4;
+  border-radius:14px;
+  padding:12px 14px;
+  font-size:16px;
+}
+.vocab-tab{
+  border:0;
+  border-radius:999px;
+  padding:10px 14px;
+  font-weight:900;
+  cursor:pointer;
+  background:#eef4fb;
+  color:var(--navy);
+}
+.vocab-tab.active{
+  background:var(--navy);
+  color:#fff;
+}
+.vocab-library{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:12px;
+}
+.vocab-card{
+  padding:16px;
+  border-radius:18px;
+  background:#fff;
+  border:1px solid #dbe8f4;
+  box-shadow:0 7px 18px rgba(20,61,115,.06);
+}
+.vocab-card .vocab-icon{
+  font-size:34px;
+  margin-bottom:8px;
+}
+.vocab-card h5{
+  margin:0;
+  color:var(--navy);
+  font-size:17px;
+}
+.vocab-card .indo{
+  margin:5px 0 12px;
+  color:var(--muted);
+  font-size:14px;
+}
+.vocab-card button{
+  border:0;
+  border-radius:10px;
+  padding:8px 10px;
+  background:#eef7ff;
+  color:var(--navy);
+  font-weight:800;
+  cursor:pointer;
+}
+.random-vocab{
+  margin-top:18px;
+  padding:18px;
+  border-radius:18px;
+  background:#fff9df;
+  border:2px dashed #efd36d;
+  text-align:center;
+}
+.random-vocab .random-word{
+  font-size:28px;
+  font-weight:900;
+  color:var(--navy);
+  margin:8px 0 4px;
+}
+.random-vocab .random-meaning{
+  color:var(--muted);
+  margin-bottom:12px;
+}
+@media(max-width:700px){
+  .explore-vocab{padding:18px}
+}
+
 </style>
 </head>
 <body>
@@ -236,6 +339,33 @@ body.presentation .brand p,body.presentation footer{display:none}body.presentati
       <button class="secondary" onclick="speak('Plants need sunlight.')">🔊 Plants need sunlight.</button>
     </div>
   </div>
+
+  <div class="explore-vocab">
+    <h4>🇮🇩 Explore Indonesia Vocabulary</h4>
+    <p class="intro">
+      Explore more English words from Indonesia. These are enrichment words, so you do not need to memorize all of them today.
+    </p>
+
+    <div class="vocab-tools">
+      <button id="animalVocabTab" class="vocab-tab active" type="button" onclick="setVocabType('animals')">🐾 50 Rare & Protected Animals</button>
+      <button id="plantVocabTab" class="vocab-tab" type="button" onclick="setVocabType('plants')">🌿 50 Plants of Indonesia</button>
+      <input id="vocabSearch" class="vocab-search" type="search" placeholder="Search vocabulary..." oninput="renderExploreVocab()">
+    </div>
+
+    <div id="vocabLibrary" class="vocab-library"></div>
+
+    <div class="random-vocab">
+      <b>🎲 Random Word Challenge</b>
+      <div id="randomVocabWord" class="random-word">Click a button to start!</div>
+      <div id="randomVocabMeaning" class="random-meaning">Say the word, guess the meaning, then listen.</div>
+      <div class="action-row">
+        <button class="secondary" type="button" onclick="randomVocab('animals')">🐾 Random Animal</button>
+        <button class="secondary" type="button" onclick="randomVocab('plants')">🌿 Random Plant</button>
+        <button class="primary" type="button" onclick="speakRandomVocab()">🔊 Listen</button>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <section id="listen" class="panel">
@@ -491,7 +621,8 @@ function renderListen(){
 }
 
 function playListen(){
-  speak(listenItems[listenIndex].audio,.76);
+  const item = listenItems[listenIndex];
+  speak(item.prompt,.76);
 }
 
 function nextListen(){
@@ -705,6 +836,60 @@ function nextShowTell(){
   document.getElementById("showTellModel").textContent = item.text;
 }
 document.addEventListener("DOMContentLoaded", renderAttendance);
+
+
+const INDONESIA_ANIMALS = [{"en": "Sumatran tiger", "id": "Harimau Sumatera"}, {"en": "Javan leopard", "id": "Macan tutul Jawa"}, {"en": "Sunda clouded leopard", "id": "Macan dahan Sunda"}, {"en": "Sumatran elephant", "id": "Gajah Sumatera"}, {"en": "Javan rhinoceros", "id": "Badak Jawa"}, {"en": "Sumatran rhinoceros", "id": "Badak Sumatera"}, {"en": "Bornean orangutan", "id": "Orangutan Kalimantan"}, {"en": "Sumatran orangutan", "id": "Orangutan Sumatera"}, {"en": "Tapanuli orangutan", "id": "Orangutan Tapanuli"}, {"en": "Proboscis monkey", "id": "Bekantan"}, {"en": "Javan gibbon", "id": "Owa Jawa"}, {"en": "Siamang", "id": "Siamang"}, {"en": "Celebes crested macaque", "id": "Yaki / monyet hitam Sulawesi"}, {"en": "Javan slow loris", "id": "Kukang Jawa"}, {"en": "Sun bear", "id": "Beruang madu"}, {"en": "Malayan tapir", "id": "Tapir Asia"}, {"en": "Banteng", "id": "Banteng"}, {"en": "Lowland anoa", "id": "Anoa dataran rendah"}, {"en": "Mountain anoa", "id": "Anoa gunung"}, {"en": "Babirusa", "id": "Babirusa"}, {"en": "Bawean deer", "id": "Rusa Bawean"}, {"en": "Komodo dragon", "id": "Komodo"}, {"en": "Sunda pangolin", "id": "Trenggiling Sunda"}, {"en": "Dugong", "id": "Dugong"}, {"en": "Irrawaddy dolphin", "id": "Pesut Mahakam"}, {"en": "Hawksbill sea turtle", "id": "Penyu sisik"}, {"en": "Green sea turtle", "id": "Penyu hijau"}, {"en": "Leatherback sea turtle", "id": "Penyu belimbing"}, {"en": "Olive ridley sea turtle", "id": "Penyu lekang"}, {"en": "Bali myna", "id": "Jalak Bali"}, {"en": "Maleo", "id": "Maleo"}, {"en": "Helmeted hornbill", "id": "Rangkong gading"}, {"en": "Rhinoceros hornbill", "id": "Rangkong badak"}, {"en": "Javan hawk-eagle", "id": "Elang Jawa"}, {"en": "Flores hawk-eagle", "id": "Elang Flores"}, {"en": "Sulawesi hawk-eagle", "id": "Elang Sulawesi"}, {"en": "Yellow-crested cockatoo", "id": "Kakatua kecil jambul kuning"}, {"en": "Salmon-crested cockatoo", "id": "Kakatua Maluku"}, {"en": "Palm cockatoo", "id": "Kakatua raja"}, {"en": "Pesquet's parrot", "id": "Nuri kabare"}, {"en": "Wilson's bird-of-paradise", "id": "Cenderawasih botak"}, {"en": "Red bird-of-paradise", "id": "Cenderawasih merah"}, {"en": "Greater bird-of-paradise", "id": "Cenderawasih besar"}, {"en": "Javan green magpie", "id": "Ekek geling Jawa"}, {"en": "Sumatran ground cuckoo", "id": "Tokhtor Sumatera"}, {"en": "Storm's stork", "id": "Bangau Storm"}, {"en": "Milky stork", "id": "Bangau bluwok"}, {"en": "White-winged duck", "id": "Mentok rimba"}, {"en": "Rote snake-necked turtle", "id": "Kura-kura leher ular Rote"}, {"en": "Pig-nosed turtle", "id": "Labi-labi moncong babi"}];
+const INDONESIA_PLANTS = [{"en": "Rice", "id": "Padi"}, {"en": "Coconut", "id": "Kelapa"}, {"en": "Banana", "id": "Pisang"}, {"en": "Mango", "id": "Mangga"}, {"en": "Papaya", "id": "Pepaya"}, {"en": "Rambutan", "id": "Rambutan"}, {"en": "Durian", "id": "Durian"}, {"en": "Jackfruit", "id": "Nangka"}, {"en": "Guava", "id": "Jambu biji"}, {"en": "Mangosteen", "id": "Manggis"}, {"en": "Snake fruit", "id": "Salak"}, {"en": "Soursop", "id": "Sirsak"}, {"en": "Avocado", "id": "Alpukat"}, {"en": "Pineapple", "id": "Nanas"}, {"en": "Sugarcane", "id": "Tebu"}, {"en": "Cassava", "id": "Singkong"}, {"en": "Sweet potato", "id": "Ubi jalar"}, {"en": "Corn", "id": "Jagung"}, {"en": "Chili pepper", "id": "Cabai"}, {"en": "Tomato", "id": "Tomat"}, {"en": "Eggplant", "id": "Terong"}, {"en": "Water spinach", "id": "Kangkung"}, {"en": "Spinach", "id": "Bayam"}, {"en": "Long bean", "id": "Kacang panjang"}, {"en": "Peanut", "id": "Kacang tanah"}, {"en": "Soybean", "id": "Kedelai"}, {"en": "Clove", "id": "Cengkeh"}, {"en": "Nutmeg", "id": "Pala"}, {"en": "Cinnamon", "id": "Kayu manis"}, {"en": "Coffee", "id": "Kopi"}, {"en": "Cocoa", "id": "Kakao"}, {"en": "Tea", "id": "Teh"}, {"en": "Rubber tree", "id": "Pohon karet"}, {"en": "Teak", "id": "Jati"}, {"en": "Bamboo", "id": "Bambu"}, {"en": "Rattan", "id": "Rotan"}, {"en": "Sandalwood", "id": "Cendana"}, {"en": "Ebony", "id": "Eboni / kayu hitam"}, {"en": "Ironwood", "id": "Ulin"}, {"en": "Orchid", "id": "Anggrek"}, {"en": "Moon orchid", "id": "Anggrek bulan"}, {"en": "Jasmine", "id": "Melati"}, {"en": "Hibiscus", "id": "Kembang sepatu"}, {"en": "Frangipani", "id": "Kamboja"}, {"en": "Bougainvillea", "id": "Bunga kertas"}, {"en": "Lotus", "id": "Teratai"}, {"en": "Rafflesia", "id": "Rafflesia"}, {"en": "Titan arum", "id": "Bunga bangkai raksasa"}, {"en": "Pitcher plant", "id": "Kantong semar"}, {"en": "Mangrove", "id": "Bakau"}];
+let exploreVocabType = "animals";
+let currentRandomVocab = "";
+
+function setVocabType(type){
+  exploreVocabType = type;
+  document.getElementById("animalVocabTab").classList.toggle("active", type === "animals");
+  document.getElementById("plantVocabTab").classList.toggle("active", type === "plants");
+  document.getElementById("vocabSearch").value = "";
+  renderExploreVocab();
+}
+
+function renderExploreVocab(){
+  const box = document.getElementById("vocabLibrary");
+  if(!box) return;
+
+  const query = (document.getElementById("vocabSearch").value || "").toLowerCase().trim();
+  const data = exploreVocabType === "animals" ? INDONESIA_ANIMALS : INDONESIA_PLANTS;
+  const icon = exploreVocabType === "animals" ? "🐾" : "🌿";
+
+  const filtered = data.filter(item =>
+    item.en.toLowerCase().includes(query) || item.id.toLowerCase().includes(query)
+  );
+
+  box.innerHTML = filtered.map(item => `
+    <div class="vocab-card">
+      <div class="vocab-icon">${icon}</div>
+      <h5>${item.en}</h5>
+      <div class="indo">${item.id}</div>
+      <button type="button" onclick='speak(${JSON.stringify(item.en)})'>🔊 Listen</button>
+    </div>
+  `).join("");
+
+  if(filtered.length === 0){
+    box.innerHTML = '<div class="feedback">No vocabulary found.</div>';
+  }
+}
+
+function randomVocab(type){
+  const data = type === "animals" ? INDONESIA_ANIMALS : INDONESIA_PLANTS;
+  const item = data[Math.floor(Math.random() * data.length)];
+  currentRandomVocab = item.en;
+  document.getElementById("randomVocabWord").textContent = item.en;
+  document.getElementById("randomVocabMeaning").textContent = item.id;
+}
+
+function speakRandomVocab(){
+  if(currentRandomVocab) speak(currentRandomVocab);
+}
+
+document.addEventListener("DOMContentLoaded", renderExploreVocab);
 
 </script>
 </body>
